@@ -18,7 +18,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/rest_image"
+            android:id="@+id/menu_image"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
@@ -30,7 +30,7 @@
             android:scaleType="centerInside" />
 
         <TextView
-            android:id="@+id/rest_name"
+            android:id="@+id/menu_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -39,14 +39,33 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="20dp"
-            android:layout_toEndOf="@+id/rest_image"
+            android:layout_toEndOf="@+id/menu_image"
             android:clickable="true"
             android:minHeight="48dp"
-            android:text="Restuarants in Area"
+            android:text="Whats on the menu"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
             android:translationY="50dp" />
+
+        <TextView
+            android:id="@+id/menu_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="20dp"
+            android:layout_toEndOf="@+id/menu_image"
+            android:clickable="false"
+            android:minHeight="48dp"
+            android:text="Price of item"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:translationY="100dp" />
 
     </RelativeLayout>
 

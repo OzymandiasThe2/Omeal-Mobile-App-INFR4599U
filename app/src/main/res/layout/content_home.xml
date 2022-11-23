@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        tools:layout_editor_absoluteX="-40dp"
-        tools:layout_editor_absoluteY="-163dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
         tools:listitem="@layout/rest_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>
