@@ -20,11 +20,9 @@ class RestAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position : Int) {
-//        val context: Context
         val currentItem = restList[position]
         holder.restName.text = currentItem.name
         Glide.with(context).load(currentItem.image).into(holder.imageUrl)
-//        holder.imageUrl.setImageDrawable()
     }
 
     override fun getItemCount(): Int {
@@ -32,13 +30,14 @@ class RestAdapter(
     }
 
 
-    class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+    open class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val restName : TextView = itemView.findViewById(R.id.rest_name)
         val imageUrl : ImageView = itemView.findViewById(R.id.rest_image)
+//        val menuItemName : TextView = itemView.findViewById(R.id.menu_item)
+//        val menuUrl : ImageView = itemView.findViewById(R.id.menu_image)
+//        val menuPrice : TextView = itemView.findViewById(R.id.menu_price)
 
 
     }
-
-
 
 }
