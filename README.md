@@ -154,7 +154,10 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] List of at least 4 dishes per restaurant presented in a recycler view with prices and availability. 
 - [ ] A cart page to review the order and make payments.  
 - [ ] Order History with tracking/status page 
-- [ ] Use Firebase real-time database for restaurants/dishes/and order status. 
+- [ ] Use Firebase real-time database for 
+  - [x] Restaurants
+  - [ ] Dishes
+  - [ ] Order Status
 - [ ] Use Room database for profile data 
 - [ ] Payment and order tracking page (Demo payment only -not connected to any API). 
 - [ ] Web application for restaurants to confirm orders and update tracking data
@@ -216,15 +219,15 @@ Project Link: [https://github.com/OzymandiasThe2/Omeal-Mobile-App-INFR4599U](htt
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/OzymandiasThe2/Omeal-Mobile-App-INFR4599U.svg?style=for-the-badge
 [contributors-url]: https://github.com/OzymandiasThe2/Omeal-Mobile-App-INFR4599U/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/OzymandiasThe2/Omeal-Mobile-App-INFR4599U.svg?style=for-the-badge
 [forks-url]: https://github.com/OzymandiasThe2/Omeal-Mobile-App-INFR4599U/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/OzymandiasThe2/Omeal-Mobile-App-INFR4599U.svg?style=for-the-badge
 [stars-url]: https://github.com/OzymandiasThe2/Omeal-Mobile-App-INFR4599U/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/OzymandiasThe2/Omeal-Mobile-App-INFR4599U.svg?style=for-the-badge
 [issues-url]: https://github.com/OzymandiasThe2/Omeal-Mobile-App-INFR4599U/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/OzymandiasThe2/Omeal-Mobile-App-INFR4599U.svg?style=for-the-badge
 [license-url]: https://github.com/OzymandiasThe2/Omeal-Mobile-App-INFR4599U/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/shriji-shah-it/
