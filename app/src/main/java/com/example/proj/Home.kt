@@ -1,8 +1,11 @@
 package com.example.proj
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -20,11 +23,11 @@ import com.google.firebase.database.*
 
 
 class Home : AppCompatActivity() {
-
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityHomeBinding
 
-    private lateinit var databaseRef : DatabaseReference
+    private lateinit var restOrderBtn: Button
+    private lateinit var databaseRef: DatabaseReference
     private lateinit var restRecyclerView: RecyclerView
     private lateinit var restArrayList: ArrayList<RestaurantData>
 
@@ -67,9 +70,24 @@ class Home : AppCompatActivity() {
 //        databaseReference = firebaseDatabase?.getReference("Restaurants")
 //
 //        getData()
-
+//        restOrderBtn = findViewById(R.id.rest_order_button)
+//        val clickText = findViewById<TextView>(R.id.rest_name)
+//        clickText.setOnClickListener {
+//
+//            val myIntent = Intent(this, Home::class.java)
+//            startActivity(myIntent)
+//
+////            forgetpasswordmain.movementMethod = LinkMovementMethod.getInstance();
+//
+//        }
+//        restOrderBtn = findViewById(R.id.rest_order_button)
+//        restOrderBtn.setOnClickListener {
+//            val intent = Intent(this, FoodMenu::class.java)
+//            startActivity(intent)
+//        }
 
     }
+
 
     private fun getRestData() {
         databaseRef = FirebaseDatabase.getInstance().getReference("Restaurants")
@@ -77,7 +95,7 @@ class Home : AppCompatActivity() {
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    for (restSnapshot in snapshot.children){
+                    for (restSnapshot in snapshot.children) {
                         val rest = restSnapshot.getValue(RestaurantData::class.java)
                         restArrayList.add(rest!!)
                     }
@@ -85,12 +103,14 @@ class Home : AppCompatActivity() {
                 }
 
             }
-            override fun onCancelled(error:DatabaseError) {
+
+            override fun onCancelled(error: DatabaseError) {
                 Log.e("database", "onCancelled: ${error.toException()}")
             }
 
         })
     }
+
 
 //    private fun getData() {
 //        databaseReference?.addValueEventListener(object : ValueEventListener {
@@ -111,8 +131,20 @@ class Home : AppCompatActivity() {
         return true
     }
 
+//    override fun onStart() {
+//        super.onStart()
+//        restOrderBtn = findViewById(R.id.rest_order_button)
+//        restOrderBtn.setOnClickListener {
+//            val intent = Intent(this, FoodMenu::class.java)
+//            startActivity(intent)
+//        }
+//
+//    }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_home)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
 }
+

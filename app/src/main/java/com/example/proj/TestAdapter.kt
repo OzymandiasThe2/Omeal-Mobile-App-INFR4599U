@@ -32,11 +32,10 @@ class TestAdapter(
         return menuList.size
     }
 
-
     open class MenuViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 //        val restName : TextView = itemView.findViewById(R.id.rest_name)
 //        val imageUrl : ImageView = itemView.findViewById(R.id.rest_image)
-        val menuItemName : TextView = itemView.findViewById(R.id.menu_item)
+        val menuItemName : TextView = itemView.findViewById(R.id.menu_item_name)
         val menuUrl : ImageView = itemView.findViewById(R.id.menu_image)
         val menuPrice : TextView = itemView.findViewById(R.id.menu_price)
 
