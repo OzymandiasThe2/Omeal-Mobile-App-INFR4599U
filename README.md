@@ -150,13 +150,13 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 ## Roadmap
 
 - [x] Login page with sign up option using firebase authenticate.  
-- [ ] List of available restaurants that contains at least 10 restaurants. The list should be designed using recycler view. 
-- [ ] List of at least 4 dishes per restaurant presented in a recycler view with prices and availability. 
-- [ ] A cart page to review the order and make payments.  
+- [x] List of available restaurants that contains at least 10 restaurants. The list should be designed using recycler view. 
+- [x] List of at least 4 dishes per restaurant presented in a recycler view with prices and availability. 
+- [x] A cart page to review the order and make payments.  
 - [ ] Order History with tracking/status page 
 - [ ] Use Firebase real-time database for 
   - [x] Restaurants
-  - [ ] Dishes
+  - [x] Dishes
   - [ ] Order Status
 - [ ] Use Room database for profile data 
 - [ ] Payment and order tracking page (Demo payment only -not connected to any API). 
