@@ -1,5 +1,7 @@
 package com.example.proj
 
+import android.content.Intent
+import android.content.Intent.getIntent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -19,11 +21,13 @@ class FoodMenu : AppCompatActivity() {
     private lateinit var binding: ActivityFoodMenuBinding
     private lateinit var databaseRef : DatabaseReference
     private lateinit var menuRecyclerView: RecyclerView
-    private lateinit var menuArrayList: ArrayList<MenuData>
+    private lateinit var menuArrayList: ArrayList<RestaurantData>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        var bundle :Bundle ?=intent.extras
 
         binding = ActivityFoodMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -35,22 +39,42 @@ class FoodMenu : AppCompatActivity() {
         menuRecyclerView.layoutManager = LinearLayoutManager(this)
 //        menuRecyclerView.setHasFixedSize(true)
 
-        menuArrayList = arrayListOf<MenuData>()
+        menuArrayList = arrayListOf<RestaurantData>()
 
         getMenuData()
 
     }
 
     private fun getMenuData() {
-        databaseRef = FirebaseDatabase.getInstance().getReference("Menu")
+//        val bundle: Bundle? = intent.extras
+//        val string: String? = intent.getStringExtra("keyString")
+
+        val testString=intent.getStringExtra("test")
+
+
+//        var strUser: String = intent.getStringExtra("test").toString() // 2
+//        val string: String? = intent.getString("keyString")
+
+
+//        val stringHolder : String = intent.getStringExtra("test").toString()
+        Log.e("database", "onDataChange1: $testString")
+
+        databaseRef = FirebaseDatabase.getInstance().getReference("Restaurants/$testString/menu")
+        Log.e("database", "onDataChangeDatra: $databaseRef")
+
 
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+//                Log.e("database", "onDataChange: $snapshot")
                 if (snapshot.exists()) {
-                    for (menuSnapshot in snapshot.children){
-                        val menu = menuSnapshot.getValue(MenuData::class.java)
-                        menuArrayList.add(menu!!)
+                    for (menuSnapshot in snapshot.children) {  ///will get 0s for rest
+//                        for (restItem in menuSnapshot.children) { //will get image/MENU/name  --> i want info from MENU
+//                            Log.e("database", "onDataChange: $menuSnapshot")
+                            val rest = menuSnapshot.getValue(RestaurantData::class.java)
+                            menuArrayList.add(rest!!)
+//                        }
                     }
+
                     menuRecyclerView.adapter = TestAdapter(menuArrayList, this@FoodMenu)
                 }
 
@@ -60,6 +84,9 @@ class FoodMenu : AppCompatActivity() {
             }
 
         })
+
+
+
     }
 
 }

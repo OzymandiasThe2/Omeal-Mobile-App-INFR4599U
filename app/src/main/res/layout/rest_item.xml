@@ -41,7 +41,7 @@
             android:layout_marginBottom="20dp"
             android:layout_toEndOf="@+id/rest_image"
             android:background="#2196F3"
-            android:clickable="true"
+            android:clickable="false"
             android:minHeight="48dp"
             android:text="Restuarants in Area"
             android:textAlignment="center"

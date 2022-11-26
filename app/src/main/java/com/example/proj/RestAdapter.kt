@@ -2,6 +2,7 @@ package com.example.proj
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,8 +47,16 @@ class RestAdapter(
         val button = viewHolder.messageButton
         button.setOnClickListener {
             Toast.makeText(context, "You clicked me.", Toast.LENGTH_SHORT).show()
+
             val intent = Intent(context, FoodMenu::class.java)
+
+
+            intent.putExtra("test", position.toString())
+
+
+            Log.e("database", "onDataChange: $position")
             context.startActivity(intent)
+
         }
 
         viewHolder.restName.text = currentItem.name
