@@ -4,7 +4,6 @@ class ShoppingCartModel {
     var key: String? = null
     var foodname: String? = null
     var price: String? = null
-    var quality = 0
+    var quantity = 0
     var totalPrice = 0f
-
 }

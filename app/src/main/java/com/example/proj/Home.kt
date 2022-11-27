@@ -41,8 +41,10 @@ class Home : AppCompatActivity() {
         setSupportActionBar(binding.appBarHome.toolbar)
 
         binding.appBarHome.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show()
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
@@ -131,6 +133,7 @@ class Home : AppCompatActivity() {
         return true
     }
 
+
 //    override fun onStart() {
 //        super.onStart()
 //        restOrderBtn = findViewById(R.id.rest_order_button)
@@ -144,6 +147,7 @@ class Home : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_home)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+
     }
 
 }

@@ -1,31 +1,50 @@
 package com.example.proj
 
-import android.content.Intent
-import android.content.Intent.getIntent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.proj.Model.MenuData
 import com.example.proj.Model.RestaurantData
+import com.example.proj.Model.ShoppingCartModel
 import com.example.proj.databinding.ActivityFoodMenuBinding
-import com.example.proj.databinding.ActivityHomeBinding
+import com.example.proj.eventbus.UpdateCartEvent
 import com.google.firebase.database.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
-class FoodMenu : AppCompatActivity() {
+class FoodMenu : AppCompatActivity(), CartLoadListener {
 
     var recyclerView: RecyclerView? = null
-
+    lateinit var cartLoadListener: CartLoadListener
     private lateinit var binding: ActivityFoodMenuBinding
     private lateinit var databaseRef : DatabaseReference
     private lateinit var menuRecyclerView: RecyclerView
     private lateinit var menuArrayList: ArrayList<RestaurantData>
 
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+    override fun onStop() {
+        super.onStop()
+        if (EventBus.getDefault().hasSubscriberForEvent(UpdateCartEvent::class.java))
+            EventBus.getDefault().removeStickyEvent(UpdateCartEvent::class.java)
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    fun onUpdateCartEvent(event:UpdateCartEvent) {
+        countCartFromFirebase()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        init()
+        countCartFromFirebase()
 
         var bundle :Bundle ?=intent.extras
 
@@ -44,6 +63,33 @@ class FoodMenu : AppCompatActivity() {
         getMenuData()
 
     }
+
+    private fun countCartFromFirebase() {
+        val cartModels : MutableList<ShoppingCartModel> = ArrayList()
+        FirebaseDatabase.getInstance()
+            .getReference("Cart")
+            .child("USER_ID")
+            .addListenerForSingleValueEvent(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (cartSnapshot in snapshot.children) {
+                        val  cartModel = cartSnapshot.getValue(ShoppingCartModel::class.java)
+                        cartModel!!.key = cartSnapshot.key
+                        cartModels.add(cartModel)
+                    }
+                    cartLoadListener.onLoadCartSuccess(cartModels)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    cartLoadListener.onLoadCartFailed(error.message)
+                }
+
+            })
+    }
+
+    private fun init() {
+        cartLoadListener = this
+    }
+
 
     private fun getMenuData() {
 //        val bundle: Bundle? = intent.extras
@@ -75,7 +121,7 @@ class FoodMenu : AppCompatActivity() {
 //                        }
                     }
 
-                    menuRecyclerView.adapter = TestAdapter(menuArrayList, this@FoodMenu)
+                    menuRecyclerView.adapter = TestAdapter(menuArrayList, this@FoodMenu,cartLoadListener)
                 }
 
             }
@@ -87,6 +133,17 @@ class FoodMenu : AppCompatActivity() {
 
 
 
+    }
+
+    override fun onLoadCartSuccess(cartModelList: List<ShoppingCartModel>) {
+        var cartSum = 0
+        for (cartModel in cartModelList!!) cartSum+= cartModel!!.quantity
+        Log.e("database", cartSum.toString())
+
+    }
+
+    override fun onLoadCartFailed(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
 }

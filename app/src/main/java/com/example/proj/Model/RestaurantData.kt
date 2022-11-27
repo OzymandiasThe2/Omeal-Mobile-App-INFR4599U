@@ -1,6 +1,7 @@
 package com.example.proj.Model
 
 data class RestaurantData(
+//    var key:String?=null,
     var name: String? = null,
     var image: String? = null,
     var foodname: String? = null,
