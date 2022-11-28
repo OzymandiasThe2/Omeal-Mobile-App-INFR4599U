@@ -2,6 +2,7 @@ package com.example.proj
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.proj.databinding.ActivitySignInBinding
@@ -30,6 +31,7 @@ class SignInActivity : AppCompatActivity() {
 
                 firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
+                        Log.e("database", "firebaseAuth.signInWithEmailAndPassword: isSuccessful")
                         val intent = Intent(this, Home::class.java)
                         startActivity(intent)
                     } else {

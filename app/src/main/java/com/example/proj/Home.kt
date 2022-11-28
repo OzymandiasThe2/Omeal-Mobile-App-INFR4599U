@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Menu
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -53,11 +54,25 @@ class Home : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_home, R.id.nav_cart, R.id.nav_orders, R.id.nav_logout
             ), drawerLayout
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        val intentHome = Intent(this, Home::class.java)
+        val intentCart = Intent(this, CartActivity::class.java)
+        val intentOrder = Intent(this, Status::class.java)
+        val intentProfile = Intent(this, ProfileRead::class.java)
+        navView.setNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.nav_home -> startActivity(intentHome)
+                R.id.nav_cart -> startActivity(intentCart)
+                R.id.nav_orders -> startActivity(intentOrder)
+                R.id.nav_logout -> startActivity(intentProfile)
+            }
+            true
+        }
 
         restRecyclerView = findViewById(R.id.rest_list_display)
         restRecyclerView.layoutManager = LinearLayoutManager(this)

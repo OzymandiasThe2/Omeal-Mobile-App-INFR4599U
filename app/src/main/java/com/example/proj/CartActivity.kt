@@ -1,16 +1,21 @@
 package com.example.proj
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proj.Model.ShoppingCartModel
+import com.example.proj.databinding.ActivityCartBinding
+import com.example.proj.databinding.ActivitySignInBinding
 import com.example.proj.eventbus.UpdateCartEvent
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -23,8 +28,9 @@ import java.text.DecimalFormat
 
 class CartActivity : AppCompatActivity(), CartLoadListener {
 
-//    val cartRecycler = findViewById<RecyclerView>(R.id.cart_recycler)
+    //    val cartRecycler = findViewById<RecyclerView>(R.id.cart_recycler)
     var cartLoadListener: CartLoadListener?= null
+
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)
@@ -42,9 +48,15 @@ class CartActivity : AppCompatActivity(), CartLoadListener {
     }
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
+//        setContentView(binding.root)
+
+//        binding = ActivityCartBinding.inflate(layoutInflater)
+
+
         init()
         loadCartFirebase()
     }

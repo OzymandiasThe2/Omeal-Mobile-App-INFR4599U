@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proj.Model.ShoppingCartModel
 import com.example.proj.eventbus.UpdateCartEvent
@@ -23,9 +25,12 @@ class CartAdapter (
         var butDel:ImageView?= null
         var butAdd:ImageView?= null
         var butClear:ImageView?= null
+        var butConfirm:ImageView?= null
         var textName:TextView?= null
         var textPrice:TextView?= null
         var textQuality:TextView?= null
+
+
 
         init {
             Log.e("cart", "CartAdapter CALLLED")
@@ -33,9 +38,11 @@ class CartAdapter (
             butDel = itemView.findViewById(R.id.cart_sub_quantity) as ImageView
             butAdd = itemView.findViewById(R.id.cart_plus_quantity) as ImageView
             butClear = itemView.findViewById(R.id.cart_food_clear) as ImageView
+            butConfirm = itemView.findViewById(R.id.cart_confirm) as ImageView
             textName = itemView.findViewById(R.id.cart_food_name) as TextView
             textPrice = itemView.findViewById(R.id.cart_food_price) as TextView
             textQuality = itemView.findViewById(R.id.cart_quantity) as TextView
+
 
         }
 
@@ -73,6 +80,22 @@ class CartAdapter (
             .create()
             dialog.show()
         Log.e("cart", "onBindViewHolder:textName" + holder.textName)
+
+        }
+        holder.butConfirm!!.setOnClickListener{_ -> val dialog = AlertDialog.Builder(context)
+            .setTitle("Confirm Purchase?")
+            .setMessage("Please confirm you want to buy the food. Our food drone service will come and drop it by shortly")
+            .setNegativeButton("Cancel") {dialog,_-> dialog.dismiss()}
+            .setPositiveButton("Confirm") {dialog,_-> notifyItemRemoved(position)
+                FirebaseDatabase.getInstance().getReference("Cart")
+                    .child("USER_ID")
+                    .child(cartModelList[position].key!!)
+                    .removeValue()
+                    .addOnSuccessListener { EventBus.getDefault().postSticky(UpdateCartEvent()) }
+            }
+            .create()
+            dialog.show()
+            Log.e("cart", "onBindViewHolder:textName" + holder.textName)
 
         }
 
