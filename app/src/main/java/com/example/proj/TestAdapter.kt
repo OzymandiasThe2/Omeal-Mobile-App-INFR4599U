@@ -98,7 +98,7 @@ class TestAdapter(
 //        }
         orderButton.setOnClickListener {
             Log.e("cart", "oCLICKED")
-            Toast.makeText(context, "You clicked me.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show()
             addToCart(currentItem)
         }
 

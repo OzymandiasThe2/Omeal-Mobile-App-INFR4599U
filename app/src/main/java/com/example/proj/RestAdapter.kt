@@ -43,7 +43,7 @@ class RestAdapter(
 //        val button = MyViewHolder.messageButton
         val button = viewHolder.messageButton
         button.setOnClickListener {
-            Toast.makeText(context, "You clicked me.", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "You clicked me.", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(context, FoodMenu::class.java)
 

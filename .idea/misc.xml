@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Mobile_Applications/proj/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.158" />
         <entry key="..\:/Mobile_Applications/proj/app/src/main/res/layout/activity_cart.xml" value="0.30104166666666665" />
         <entry key="..\:/Mobile_Applications/proj/app/src/main/res/layout/activity_food_menu.xml" value="0.2953125" />
         <entry key="..\:/Mobile_Applications/proj/app/src/main/res/layout/activity_home.xml" value="0.2265625" />
